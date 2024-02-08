@@ -4,9 +4,9 @@ funcprot(0); //switchs off scilab function protection mode i.e. it allows you to
 clc; //clears console
 clf; //clears figure console
 clear; //clears previous variable values
-kB=1.380649e-23; //Boltzmann constant
-mu=0; //chemical potential
-Ei=0;Ef=12.42e-21; //endpoints of energy spectrum i.e. average kinetic energy of H-molecules in the atmosphere
+kB=1.380649e-23; //the Boltzmann constant
+mu=0; //the chemical potential
+Ei=0;Ef=12.42e-21; //the endpoints of energy spectrum i.e. average kinetic energy of H-molecules in the atmosphere
 N=1000; //number of energy levels
 E=linspace(Ei,Ef,N); //creates a linear space of energy levels
 T=300; //the absolute temperature i.e. earth temperature
