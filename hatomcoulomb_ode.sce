@@ -43,8 +43,8 @@ E02=-15
 // e.g. -20 (for the ground state solution)
 E11=-2 //provide one end of 
 // the interval e.g. -2 (for the 1st excited state solution)
-E12=-4 //provide one end of 
-// the interval e.g. -4 (for the 1st excited state solution)
+E12=-4 //enter the other end
+// e.g. -4 (for the 1st excited state solution)
 
 function du=f(r,u,E) //here we put u(r) and its derivative in 
 // the necessary form for the use of ODE
@@ -60,10 +60,10 @@ r=ri:h:rf; //defines an array of r-values
 
 //The following loop is for the ground state
 for i=1:100 //starting a loop
-    u01=ode([ui;dui],ri,r,list(f,E01)) //solves for u(r) with E=E1
-    u02=ode([ui;dui],ri,r,list(f,E02)) //solves for u(r) with E=E2
-    E03=(E01+E02)/2 //takes the average of E1,E2
-    u03=ode([ui;dui],ri,r,list(f,E03)) //solves for u(r) with E=E3
+    u01=ode([ui;dui],ri,r,list(f,E01)) //solves for u(r) with E=E01
+    u02=ode([ui;dui],ri,r,list(f,E02)) //solves for u(r) with E=E02
+    E03=(E01+E02)/2 //takes the average of E01,E02
+    u03=ode([ui;dui],ri,r,list(f,E03)) //solves for u(r) with E=E03
     if (u01(1,n)*u03(1,n))<0 then //implementing the IVT and 
 // the Bisection Algorithm
         E02=E03
@@ -74,10 +74,10 @@ end
 
 //The following loop is for the first excited state
 for i=1:100 //starting a loop
-    u11=ode([ui;dui],ri,r,list(f,E11)) //solves for u(r) with E=E1
-    u12=ode([ui;dui],ri,r,list(f,E12)) //solves for u(r) with E=E2
-    E13=(E11+E12)/2 //takes the average of E1,E2
-    u13=ode([ui;dui],ri,r,list(f,E13)) //solves for u(r) with E=E3
+    u11=ode([ui;dui],ri,r,list(f,E11)) //solves for u(r) with E=E11
+    u12=ode([ui;dui],ri,r,list(f,E12)) //solves for u(r) with E=E12
+    E13=(E11+E12)/2 //takes the average of E11,E12
+    u13=ode([ui;dui],ri,r,list(f,E13)) //solves for u(r) with E=E13
     if (u11(1,n)*u13(1,n))<0 then //implementing the IVT and 
 // the Bisection Algorithm
         E12=E13
@@ -90,19 +90,20 @@ disp("The Ground State energy(eV) is",E03); //displaying
 // the eigenvalue(eV)
 disp("The First Excited State energy(eV) is",E13); //displaying 
 // the eigenvalue(eV)
-zm=zeros(1,n);
+zm=zeros(1,n); //list of zeroes, we want to plot u=0 as a reference
 plot(r,u03(1,:),'r-*',r,u13(1,:),'-+',r,zm(1:n),'black--'); 
 //Plotting the eigenfunction or energy wavefunction against r(angstrom).
 
 //Cosmetics for your plot
-a=gca();
-a.thickness=2;
-a.box="on";
-a.children.children.thickness=1;
-title("Energy Eigenfunctions","fontsize",4,"fontname",2);
-xlabel("r in Angstrom","fontsize",3,"fontname",3);
-ylabel("Wave Function","fontsize",3,"fontname",3);
-legend(["Ground State( "+string(E03)+"ev)","Ground State( "+string(E13)+"ev)"],[4]);
+a=gca(); //gets the current axes
+a.thickness=2; //sets axes thickness
+a.box="on"; //puts a box around the plot
+a.children.children.thickness=1; //sets thickness of the curves
+title("Energy Eigenfunctions","fontsize",4,"fontname",2); //sets plot title 
+xlabel("r in Angstrom","fontsize",3,"fontname",3); //sets x-label
+ylabel("Wave Function","fontsize",3,"fontname",3); //sets y-label
+legend(["Ground State( "+string(E03)+"ev)","Ground State( "+string(E13)+"ev)"],[4]); 
+//puts label on different curves inside the plot
 
 
 
