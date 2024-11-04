@@ -85,6 +85,5 @@ a.box="on";
 a.children.children.thickness=1; 
 title("Energy Eigenfunctions","fontsize",4,"fontname",2); 
 xlabel("r in Angstrom","fontsize",3,"fontname",3); 
-ylabel("Wave Function","fontsize",3,"fontname",3); 
-//legend(["Ground State( "+string(E03)+"ev)","Ground State( "+string(E13)+"ev)"],[4]); 
+ylabel("Wave Function","fontsize",3,"fontname",3);  
 legend(["Ground State( "+string(E103)+"ev) for a= "+string(a1)+"A","Ground State( "+string(E203)+"ev) for a= "+string(a2)+"A","Ground State( "+string(E303)+"ev) for a= "+string(a3)+"A"],[1]);
