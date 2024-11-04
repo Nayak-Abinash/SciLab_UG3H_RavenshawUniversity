@@ -57,7 +57,7 @@ mprintf("\n E(%d)=%2.5f ev",1,Energy3(1));
 
 
 
-np=100;
+np=50;
 zm=zeros(1,np);
 psi10=[0;EV1(:,1);0];
 psi20=[0;EV2(:,1);0];
@@ -69,9 +69,9 @@ a.thickness=2;
 a.box="on";
 a.children.children.thickness=1;
 title("Energy Eigenfunctions","fontsize",4,"fontname",2);
-xlabel("r in Angstrom","fontsize",3,"fontname",3);
+xlabel("r in FemtoMeter","fontsize",3,"fontname",3);
 ylabel("Wave Function","fontsize",3,"fontname",3);
-legend(["Ground State( "+string(Energy1(1))+"ev) for a= "+string(b1)+"A","Ground State( "+string(Energy2(1))+"ev) for a= "+string(b2)+"A","Ground State( "+string(Energy3(1))+"ev) for a= "+string(b3)+"A"],[1]);
+legend(["Ground State( "+string(Energy1(1))+"ev) for b= "+string(b1)+"MeV/fm^3","Ground State( "+string(Energy2(1))+"ev) for b= "+string(b2)+"MeV/fm^3","Ground State( "+string(Energy3(1))+"ev) for b= "+string(b3)+"MeV/fm^3"],[1]);
 
 
 
